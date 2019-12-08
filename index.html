@@ -7,7 +7,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" type="image/png" href="images/SPY.jpg">
     <title>Password Generator</title>
   </head>
   <body>
@@ -40,11 +41,48 @@
       </div> 
     </nav>
     <!-- Main content -->
-    <div class="row container">
+    <div class="container mt-5">
+        <div class="col-12 pagecontent">
+            <div class="row">
+              <div class="col-lg-2 d-none d-lg-block"></div>
+              <div class="col-12 col-lg-8 mainBackground pb-5">
+                <div class="row">
+                  <h1 class="mx-auto pb-5 align-middle mt-4">Password Generator</h1>
+                </div>
+                <div class="col-12 mainCenterBox mx-auto">
+                  <h2 class="d-block mx-auto mt-3">Let us help you generate a password</h2>
+                  <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-10 solidOuterBox pb-2">
+                      <div class="row dashedBox mx-auto my-3">
+                        <div class="col-12">
+                        <div class="row form-group mx-auto mt-3 mb-3">
+                          <label for="passwordForm"> </label>
+                          <textarea class="form-control" id="passwordForm" rows="7">
+                            <span class="passwordText">Your "Secure" Password</span>
+                          </textarea>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                    <div class="col-1"></div>
+                  </div>
+                  <div class="row my-4">
+<!-- Buttons go here -->
+                    <button type="button" class="d-none d-lg-inline-block button_generate btn btn-lg ml-5 mr-auto">Generate Password</button>
+                    <button type="button" class="d-none d-lg-inline-block button_clipboard btn btn-lg mr-5 ml-auto">Copy to Clipboard</button>
+                    <button type="button" class="d-lg-none btn-block button_generate btn btn-lg mx-auto w-75">Generate Password</button>
+                    <button type="button" class="d-lg-none btn-block button_clipboard btn btn-lg mx-auto w-75">Copy to Clipboard</button>
+                  </div>
+                </div>
+                
 
-    </div>
-
-
+              </div>
+              <div class="col-md-2 d-none d-lg-block">
+                <div class="row topSpace"></div>
+                <div class="row asideText">Welcome to the NSA's official passward generator.  We know what a pain it can be to come up with a new password, so we would like to come up with one for you.  We'll even store it in our database for you, just incase you ever forget it.</div>  
+                <div class="row"></div>
+              </div>
 
     <!-- Optional JavaScript -->
     <script src="script.js"></script>

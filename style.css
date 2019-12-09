@@ -8,7 +8,7 @@ body {
     min-height: 100%;
     background-image: url(./images/NSAwireframe.jpg);
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
     margin-left:auto;
     margin-right: auto;
     position: relative;
@@ -42,6 +42,7 @@ body {
 .mainBackground {
    background-image: url("./images/NSAbackground.png");
    height: fit-content;
+   background-size: cover;
 }
 h1 {
     color:#ffffff;

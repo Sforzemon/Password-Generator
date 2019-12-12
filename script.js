@@ -36,7 +36,7 @@ var regASpec = /^(?!.*\d)(?!.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,128
 var regaoneSpec = /^(?=.*\d)(?=.*[a-z])(?!.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,128}$/;
 var regaone = /^(?=.*\d)(?=.*[a-z])(?!.*[A-Z])(?!.*[^a-zA-Z0-9])(?!.*\s).{8,128}$/;
 var regaSpec = /^(?!.*\d)(?=.*[a-z])(?!.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,128}$/;
-var oneSpec = /^(?=.*\d)(?!.*[a-z])(?!.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,128}$/;
+var regoneSpec = /^(?=.*\d)(?!.*[a-z])(?!.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,128}$/;
 
 
 //I have four buttons on my page. 2 during standard screen sizes,
@@ -103,7 +103,7 @@ function passIntro() {
                         document.querySelector("#passwordForm").textContent = newPassGen;
                     }
                     else {
-                        alert("You know what, you already got all that other crap, who even care about some random symbol.\n\nYou do you beautiful.")
+                        alert("You know what, you already got all that other crap, who even care about some random symbol.\n\nYou do you, beautiful.")
                         do {
                             var newPass = "";
                             var i = 0;

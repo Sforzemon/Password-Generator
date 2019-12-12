@@ -1,33 +1,41 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
+<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
+<!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
+<!-- Gotta love my little spy icon. -->
     <link rel="icon" type="image/png" href="images/SPY.jpg">
     <title>Password Generator</title>
   </head>
   <body>
-    <!-- Password Generator
-    Needs to be able to create random passwords to meet user specifications
-    A button will initiate prompts to have users make choices
-        (I'm thinking that I like checkboxes more than multiple prompts...)
-    user can choose from 
-        Capital letters
-        Lowercase letters
-        Special characters
-        Numbers
-    User will also have choice of length
-        from 8-128 characters
-    App should be able to validate that the user has at least one choice selected.
-    Once prompts are answered the password should be displayed on the page
-    From here there should be a second button that will allow the user to copy the password from the screen to thier clipboard.
-    The app should be responsive to page size. -->
-    <!-- Navbar -->
+<!-- Password Generator
+  Original Instructions before I ran away with them like a truck
+  going downhill with no brakes.
+
+  Needs to be able to create random passwords to meet user specifications.
+
+  A button will initiate prompts to have users make choices
+      (I'm thinking that I like checkboxes more than multiple prompts...)
+
+  user can choose from 
+      Capital letters
+      Lowercase letters
+      Special characters
+      Numbers
+
+  User will also have choice of length
+      from 8-128 characters
+      
+  App should be able to validate that the user has at least one choice selected.
+  Once prompts are answered the password should be displayed on the page
+  From here there should be a second button that will allow the user to copy the password from the screen to thier clipboard.
+  The app should be responsive to page size. -->
+<!-- Navbar -->
     <nav  id="navBackground" class="navbar navbar-expand">
       <div class="container">
         <div class="row">
@@ -40,7 +48,7 @@
         </div> 
       </div> 
     </nav>
-    <!-- Main content -->
+<!-- Main content -->
     <div class="container mt-5">
         <div class="col-12 pagecontent">
             <div class="row">
@@ -58,9 +66,7 @@
                         <div class="col-12">
                         <div class="row form-group mx-auto mt-3 mb-3">
                           <label for="passwordForm"> </label>
-                          <textarea class="form-control" id="passwordForm" rows="7">
-                            Your "Secure" Password
-                          </textarea>
+                          <textarea class="form-control text-align-center" id="passwordForm" rows="7" value="">Your "secure" password will display here.</textarea>
                         </div>
                       </div>
                       </div>
@@ -69,10 +75,10 @@
                   </div>
                   <div class="row my-4">
 <!-- Buttons go here -->
-                    <button type="button" title="Don't worry, you can trust us." class="d-none d-lg-inline-block button_generate btn btn-lg ml-5 mr-auto">Generate Password</button>
-                    <button type="button" title="Click to copy password to both our clipboards." class="d-none d-lg-inline-block button_clipboard btn btn-lg mr-5 ml-auto">Copy to Clipboard</button>
-                    <button type="button" title="Don't worry, you can trust us." class="d-lg-none btn-block button_generate btn btn-lg mx-auto w-75">Generate Password</button>
-                    <button type="button" title="Click to copy password to both our clipboards." class="d-lg-none btn-block button_clipboard btn btn-lg mx-auto w-75">Copy to Clipboard</button>
+                    <button type="button" id="passGen" title="Don't worry, you can trust us." class="d-none d-lg-inline-block button_generate btn btn-lg ml-5 mr-auto">Generate Password</button>
+                    <button type="button" id="copyClip" title="Click to copy password to both our clipboards." class="d-none d-lg-inline-block button_clipboard btn btn-lg mr-5 ml-auto">Copy to Clipboard</button>
+                    <button type="button" id="passGenPhone" title="Don't worry, you can trust us." class="d-lg-none btn-block button_generate btn btn-lg mx-auto w-75">Generate Password</button>
+                    <button type="button" id="copyClipPhone" title="Click to copy password to both our clipboards." class="d-lg-none btn-block button_clipboard btn btn-lg mx-auto w-75">Copy to Clipboard</button>
                   </div>
                 </div>
                 
@@ -84,11 +90,12 @@
                 <div class="row"></div>
               </div>
 
-    <!-- Optional JavaScript -->
-    <script src="script.js"></script>
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- Optional JavaScript -->
+    <script src="script.js"></script>
   </body>
 </html>

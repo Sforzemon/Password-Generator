@@ -31,4 +31,4 @@ Aside from leaving the page, he can't comment on that, so just know that while a
 
 For the password validation I used do loops and set my password to check itself to see if it matched with my regex variables
 
-![Alt text](./images/PassGen\ Screenshot.png?raw=true "Optional Title")
+![NSA PassGen](images/PassGen Screeshot.png?raw=true "ScreenShot")

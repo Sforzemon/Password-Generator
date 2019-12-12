@@ -26,6 +26,20 @@ var lowChar = "abcdefghijklmnopqrstuvwxzy";
 var numChar = "1234567890";
 var specChar = "~!@#$%^&*()_+{}|[];:'/?><,.`";
 
+//These variables are for validating passwords
+//And so I am learning about regex
+var regAaoneSpec = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,128}$/;
+var regAaone = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*[^a-zA-Z0-9])(?!.*\s).{8,128}$/;
+var regAaSpec = /^(?!.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,128}$/;
+var regAa = /^(?!.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*[^a-zA-Z0-9])(?!.*\s).{8,128}$/;
+var regAoneSpec = /^(?=.*\d)(?!.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,128}$/;
+var regAone = /^(?=.*\d)(?!.*[a-z])(?=.*[A-Z])(?!.*[^a-zA-Z0-9])(?!.*\s).{8,128}$/;
+var regASpec = /^(?!.*\d)(?!.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,128}$/;
+var regaoneSpec = /^(?=.*\d)(?=.*[a-z])(?!.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,128}$/;
+var regaone = /^(?=.*\d)(?=.*[a-z])(?!.*[A-Z])(?!.*[^a-zA-Z0-9])(?!.*\s).{8,128}$/;
+var regaSpec = /^(?!.*\d)(?=.*[a-z])(?!.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,128}$/;
+var oneSpec = /^(?=.*\d)(?!.*[a-z])(?!.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,128}$/;
+
 
 //I have four buttons on my page. 2 during standard screen sizes,
 //and two for the smaller media screen.  We have the first 2 out of each
@@ -36,15 +50,18 @@ var passGenBtnPhone = document.querySelector("#passGenPhone");
 var copyClipBtnPhone = document.querySelector("#copyClipPhone");
 
 passGenBtn.addEventListener("click", passIntro);
-copyClipBtn.addEventListener("click", copyPass);
+copyClipBtn.addEventListener("click", screenShot);
 passGenBtnPhone.addEventListener("click", passIntro);
-copyClipBtnPhone.addEventListener("click", copyPass);
+copyClipBtnPhone.addEventListener("click", screenShot);
 
 //I wrote this before I realized I could put functions in functions.
 //I like it though, so I'just kept it to the side.
 function followDirections() {
     document.querySelector("#passwordForm").textContent = "";
     document.querySelector("#passwordForm").textContent = "1C4ntf0LL0wD1rect10ns!";
+}
+function itsASpy() {
+    document.body.style.display = "none";
 }
 //This stupidly long function is because I wan't to have the secret 
 //NSA agent on the other side to seem invested in your choices.  
@@ -56,6 +73,8 @@ function passIntro() {
     var newPassGen = "";
     var passLength = 0;
     var i = 0;
+    //Yes, this variable is purely there for a joke.
+    var myWindows = 0;
     //Obviously this is where the function actually begins.
     passLength = prompt("Hey there pal. My name is Dave and I am here because I want to help you have a better password.\n\nIdeally for your email, or if you have a Bitcoin wallet, or an Apple ID, really anything.  We are here to help.\n\nFirst thing though, gotta decide how long to make this password.\nThat'll keep the other hackers out.","Type a number between 8 and 128.");
     if (passLength >= 8 && passLength <= 128) {
@@ -68,21 +87,36 @@ function passIntro() {
                     var addSym = confirm("I gotta hand it to you, if I wasn't helping you out right now, I would be bummed to have to figure this password out.\n\nYou're doing everything right, my friend, so I gotta ask.\n\nYou want some special symbols? Thats whats really gonna confuse the bad guys out there.");
                     if (addSym === true) {
                         alert("You have no idea how happy you have made me today. I'm gonna let all the folks in the office know about this.\n\nYou, not the password. That's our little secret.\n\nAnyway, here you go!");
+                        //This seemed like a fun idea until I finished and decided 
+                        //I wanted to be able to validate the passwords...
+                        //Now I have to write a hundred do loops... fun.
+                        do {
+                        var newPass = "";
+                        var i = 0;
+                        var newPassGen = "";
                         newPass = newPass + capChar + lowChar + numChar + specChar;
                         newPassArray = newPass.split("");
                         for (i = 0; i < passLength; i++){
                             newPassGen += newPassArray[Math.floor(Math.random()*newPassArray.length)];
                             }
+                        }
+                        while (!newPassGen.match(regAaoneSpec));
                         document.querySelector("#passwordForm").textContent = "";
                         document.querySelector("#passwordForm").textContent = newPassGen;
                     }
                     else {
                         alert("You know what, you already got all that other crap, who even care about some random symbol.\n\nYou do you beautiful.")
+                        do {
+                            var newPass = "";
+                            var i = 0;
+                            var newPassGen = "";
                         newPass = newPass + capChar + lowChar + numChar;
                         newPassArray = newPass.split("");
                         for (i = 0; i < passLength; i++){
                             newPassGen += newPassArray[Math.floor(Math.random()*newPassArray.length)];
                             }
+                        }
+                        while (!newPassGen.match(regAaone));
                         document.querySelector("#passwordForm").textContent = "";
                         document.querySelector("#passwordForm").textContent = newPassGen;
                     }
@@ -91,21 +125,33 @@ function passIntro() {
                     var addSym = confirm("You were right to skip those, and anyone that judges you for it will have to answer to me.\n\nAnd trust me, I'll know as soon as they talk some crap.\n\nWhat about special characters though... you want those right?");
                     if (addSym === true) {
                         alert("Thats it, you got letters, you got these weirdo symbols.  You're golden.\n\nStephanie next to me is saying otherwise, but she's jealous, don't listen to her.")
+                        do {
+                            var newPass = "";
+                            var i = 0;
+                            var newPassGen = "";
                         newPass = newPass + capChar + lowChar + specChar;
                         newPassArray = newPass.split("");
                         for (i = 0; i < passLength; i++){
                             newPassGen += newPassArray[Math.floor(Math.random()*newPassArray.length)];
                             }
+                        }
+                        while (!newPassGen.match(regAaSpec));
                         document.querySelector("#passwordForm").textContent = "";
                         document.querySelector("#passwordForm").textContent = newPassGen;
                     }
                     else {
                         alert("Haha, you went with just letters! You're brave as hell and I love it.\n\nYou can make incredibly tough passwords and you went with just the big and little letters.\n\nYou sweet little summer child, never change.");
-                        newPass = newPass + capChar;
+                        do {
+                            var newPass = "";
+                            var i = 0;
+                            var newPassGen = "";
+                        newPass = newPass + capChar + lowChar;
                         newPassArray = newPass.split("");
                         for (i = 0; i < passLength; i++){
                             newPassGen += newPassArray[Math.floor(Math.random()*newPassArray.length)];
                             }
+                        }
+                        while (!newPassGen.match(regAa));
                         document.querySelector("#passwordForm").textContent = "";
                         document.querySelector("#passwordForm").textContent = newPassGen;
                     }                  
@@ -115,23 +161,35 @@ function passIntro() {
                 var addNum = confirm("You're right, we already got big letters, we don't need little ones. Let's just move on.\n\nDid you want numbers in there?");
                 if (addNum == true) {
                     var addSym = confirm("Now we're cooking, lets keep it rolling. I bet it takes Jim down the hall at least an hour to crack this one.\n\nAnyway, want some special characters in there too?");
-                    if (assSym === true) {
+                    if (addSym === true) {
                         alert("Ha! Your ass is going down Jim! I'm so sick of his smug ass getting my passwords before I get his.\n\n'Oooh, I'm Jim, I'm employee of the month. I don't live with my mom.' I hate him...\n\nUh, anyway, here yo go. See you later pal!");
+                        do {
+                            var newPass = "";
+                            var i = 0;
+                            var newPassGen = "";
                         newPass = newPass + capChar + numChar + specChar;
                         newPassArray = newPass.split("");
                         for (i = 0; i < passLength; i++){
                             newPassGen += newPassArray[Math.floor(Math.random()*newPassArray.length)];
                             }
+                        }
+                        while (!newPassGen.match(regAoneSpec));
                         document.querySelector("#passwordForm").textContent = "";
                         document.querySelector("#passwordForm").textContent = newPassGen;
                     }
                     else {
                         alert("Big letters and numbers?... Thats it?\n\nWell, I guess I'll see you soon when you need to make a new one.");
+                        do {
+                            var newPass = "";
+                            var i = 0;
+                            var newPassGen = "";
                         newPass = newPass + capChar + numChar;
                         newPassArray = newPass.split("");
                         for (i = 0; i < passLength; i++){
                             newPassGen += newPassArray[Math.floor(Math.random()*newPassArray.length)];
                             }
+                        }
+                        while (!newPassGen.match(regAone));
                         document.querySelector("#passwordForm").textContent = "";
                         document.querySelector("#passwordForm").textContent = newPassGen;
                     }
@@ -140,11 +198,17 @@ function passIntro() {
                     var addSym = confirm("Ok, that's cool.  We still got this.\n\nWe can fix this!\n\nDo... you... want...(yes)... special symbols?");
                     if (addSym === true) {
                         alert("Oh thank god! You were so close to having something like DHUGFYLFE be your password. This isn't much better, but at least its more than just capital letters.")
+                        do {
+                            var newPass = "";
+                            var i = 0;
+                            var newPassGen = "";
                         newPass = newPass + capChar + specChar;
                         newPassArray = newPass.split("");
                         for (i = 0; i < passLength; i++){
                             newPassGen += newPassArray[Math.floor(Math.random()*newPassArray.length)];
                             }
+                        }
+                        while (!newPassGen.match(regASpec));
                         document.querySelector("#passwordForm").textContent = "";
                         document.querySelector("#passwordForm").textContent = newPassGen;
                     }
@@ -167,33 +231,68 @@ function passIntro() {
             if (addLower === true) {
                 var addNum = confirm("Nice, I was real worried you were just going to say no to that too.\n\nOk, lets talk numbers.  Want 'em?");
                 if (addNum === true) {
-                    var addSym = confirm("Building steam! We're getting this puppy going! I'm not even gonna waste your time with my innane comments.  I'm so stoked right now that we are in a yes mood, I want to keep this train rolling.  Gotta keep the momentum.\n\nSpecial CHaracter. Yay or nay?");
+                    var addSym = confirm("Building steam! We're getting this puppy going! I'm not even gonna waste your time with my innane comments.  I'm so stoked right now that we are in a yes mood, I want to keep this train rolling.  Gotta keep the momentum.\n\nSpecial Character. Yay or nay?");
                     if (addSym === true) {
                         alert("Oh man, I was worried my rambling might have pushed you to a no.\n\nI don't know how often you hear this, but:\nI'm proud of you, and I'm proud of what we were able to accomplish here today.");
+                        do {
+                            var newPass = "";
+                            var i = 0;
+                            var newPassGen = "";
                         newPass = newPass + lowChar + numChar + specChar;
                         newPassArray = newPass.split("");
                         for (i = 0; i < passLength; i++){
                             newPassGen += newPassArray[Math.floor(Math.random()*newPassArray.length)];
                             }
+                        }
+                        while (!newPassGen.match(regaoneSpec));
                         document.querySelector("#passwordForm").textContent = "";
                         document.querySelector("#passwordForm").textContent = newPassGen;
                     }
                     else {
-                        alert("I knew I should have just stayed quiet.\n\n'Just do your job Dave.' They say.\n'You don't even have to say hi to them, just write down their IP and their password.'\n\nWell, excuse me for trying to bring some joy into this world. Sorry I don't want to be like these souless drones with thier nice big offices, and floor to ceiling windows.\n\nYou know how many windows I have?\n\n\n98! Because they won't let me get a newer computer.");
+                        myWindows = prompt("I knew I should have just stayed quiet.\n'Just do your job Dave.' They say.\n'You don't even have to say hi to them, just write down their IP and their password.'\nWell, excuse me for trying to bring some joy into this world. Sorry I don't want to be like these souless drones with thier nice big offices, and floor to ceiling windows.\n\nYou know how many windows I have?","Do you?");
+                        if (myWindows > 97 && myWindows < 99) {
+                            alert("That... That's right.  How do you know that?  How could you possible have known... unless...\n\nOh shit, you're a spy! I'm outta here!");
+                            document.body.style.display = "none";
+                        }
+                        else {
+                        alert("No!! I have 98!!\n\nBecause they won't let me get a newer computer!");
+                        do {
+                            var newPass = "";
+                            var i = 0;
+                            var newPassGen = "";
                         newPass = newPass + lowChar + numChar;
                         newPassArray = newPass.split("");
                         for (i = 0; i < passLength; i++){
                             newPassGen += newPassArray[Math.floor(Math.random()*newPassArray.length)];
                             }
+                        }
+                        while (!newPassGen.match(regaone));
                         document.querySelector("#passwordForm").textContent = "";
                         document.querySelector("#passwordForm").textContent = newPassGen;
+                        }
                     }
                 }
                 else {
                     var addSym = confirm("Ok, so we at least have lowercase letters... I have the feeling you may be a little simple, but that doesn't mean your password needs to be as well.\n\nWhat do you say? Special characters? For my, apparently very, special little friend?");
                     if (addSym === true) {
                         alert("Well, at least we got two things in this password.  You succesfully avoided having something like kasjdhflh.\n\nI suppose congratulations are in order.\nJust so you're not waiting, that statement was them.");
+                        do {
+                            var newPass = "";
+                            var i = 0;
+                            var newPassGen = "";
                         newPass = newPass + lowChar + specChar;
+                        newPassArray = newPass.split("");
+                        for (i = 0; i < passLength; i++){
+                            newPassGen += newPassArray[Math.floor(Math.random()*newPassArray.length)];
+                            }
+                        }
+                        while (!newPassGen.match(regaSpec));
+                        document.querySelector("#passwordForm").textContent = "";
+                        document.querySelector("#passwordForm").textContent = newPassGen;
+                    }
+                    else {
+                        alert("Just lowercase huh? Your password is going to look like a child slapped a keyboard.\n\nCool.");
+                        newPass = newPass + lowChar;
                         newPassArray = newPass.split("");
                         for (i = 0; i < passLength; i++){
                             newPassGen += newPassArray[Math.floor(Math.random()*newPassArray.length)];
@@ -210,11 +309,17 @@ function passIntro() {
                     var addSym = confirm("Ok, cool.  You picked something at least. I feel like I shouldn't congratulate you on such a simple task, and yet I feel compelled because I'm so surprised.\n\nWay to go!\n\nSo what about symbols? You want any of these or are you hoping to generate something that resembles binary?");
                     if (addSym === true) {
                         alert("Thank you.  Thank you for at least trying to make a password.  You know nobody is going to accept this thing right?\n\nWhat ever though, it's yours. Have fun.");
+                        do {
+                            var newPass = "";
+                            var i = 0;
+                            var newPassGen = "";
                         newPass = newPass + numChar + specChar;
                         newPassArray = newPass.split("");
                         for (i = 0; i < passLength; i++){
                             newPassGen += newPassArray[Math.floor(Math.random()*newPassArray.length)];
                             }
+                        }
+                        while (!newPassGen.match(regoneSpec));
                         document.querySelector("#passwordForm").textContent = "";
                         document.querySelector("#passwordForm").textContent = newPassGen;
                     }
@@ -257,11 +362,18 @@ function passIntro() {
         followDirections();
     }    
 }
+function screenShot() {
+    document.body.style.display = "none";
+    setTimeout(function() {
+        (document.body.style.display = "initial"); }, 100);
+    setTimeout(function() {   
+        (copyPass()); }, 500);       
+}
 //clipboard copy function.
 function copyPass() {
     var copyPass = "";
     copyPass = document.getElementById("passwordForm");
     copyPass.select();
     document.execCommand('copy');
-    alert("Perfect. Your new password has been copied to our clipboards!");
+    alert("Perfect. Your new password has been copied to our clipboards!\n\nOh, and don't mind that screenshot. Because... it wasn't... a.. screenshot...\n\nOh damn.");
 }
